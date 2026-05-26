@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Calculadora de Piso / Porcelanato</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<main class="app">
+  <header>
+    <h1>Calculadora de Piso</h1>
+    <p class="sub">Tudo se atualiza automaticamente enquanto você digita.</p>
+  </header>
+
+  <section class="card">
+    <h2>1. Área do ambiente</h2>
+    <div class="grid grid-3">
+      <label>
+        <span>Largura (m)</span>
+        <input type="number" step="0.01" min="0" id="area-largura" placeholder="ex: 3.5" />
+      </label>
+      <label>
+        <span>Comprimento (m)</span>
+        <input type="number" step="0.01" min="0" id="area-comprimento" placeholder="ex: 4.2" />
+      </label>
+      <label>
+        <span>Área (m²)</span>
+        <input type="number" step="0.0001" min="0" id="area-m2" placeholder="ex: 14.7" />
+      </label>
+    </div>
+    <p class="hint">Digite dois campos quaisquer (ou só o m²) — os outros se ajustam.</p>
+  </section>
+
+  <section class="card">
+    <h2>2. Porcelanato / Piso</h2>
+    <div class="grid grid-3">
+      <label>
+        <span>Largura da peça (cm)</span>
+        <input type="number" step="0.1" min="0" id="peca-largura" placeholder="ex: 60" />
+      </label>
+      <label>
+        <span>Comprimento da peça (cm)</span>
+        <input type="number" step="0.1" min="0" id="peca-comprimento" placeholder="ex: 60" />
+      </label>
+      <label>
+        <span>Área da peça (m²)</span>
+        <input type="number" step="0.0001" min="0" id="peca-m2" placeholder="ex: 0.36" readonly />
+      </label>
+    </div>
+
+    <div class="grid grid-3">
+      <label>
+        <span>m² por caixa</span>
+        <input type="number" step="0.0001" min="0" id="caixa-m2" placeholder="ex: 2.16" />
+      </label>
+      <label>
+        <span>Peças por caixa</span>
+        <input type="number" step="1" min="0" id="caixa-pecas" placeholder="ex: 6" />
+      </label>
+      <label>
+        <span>Preço da caixa (R$)</span>
+        <input type="number" step="0.01" min="0" id="caixa-preco" placeholder="ex: 89.90" />
+      </label>
+    </div>
+    <p class="hint">Digite o m² da caixa <em>ou</em> a quantidade de peças — o outro é calculado.</p>
+  </section>
+
+  <section class="card results">
+    <h2>3. Resultado</h2>
+
+    <div class="result-block">
+      <h3>Por m²</h3>
+      <div class="grid grid-2">
+        <div class="kpi"><span>Preço por m²</span><strong id="r-preco-m2">—</strong></div>
+        <div class="kpi"><span>Preço por peça</span><strong id="r-preco-peca">—</strong></div>
+      </div>
+    </div>
+
+    <div class="result-block">
+      <h3>Quantidade exata (sem folga)</h3>
+      <div class="grid grid-3">
+        <div class="kpi"><span>Caixas necessárias</span><strong id="r-caixas">—</strong></div>
+        <div class="kpi"><span>Peças necessárias</span><strong id="r-pecas">—</strong></div>
+        <div class="kpi"><span>Sobra na última caixa</span><strong id="r-sobra">—</strong></div>
+      </div>
+      <div class="grid grid-2">
+        <div class="kpi total"><span>Valor total</span><strong id="r-total">—</strong></div>
+        <div class="kpi"><span>m² comprado</span><strong id="r-m2-comprado">—</strong></div>
+      </div>
+    </div>
+
+    <div class="result-block">
+      <h3>Com folga de 5%</h3>
+      <div class="grid grid-3">
+        <div class="kpi"><span>Área + 5%</span><strong id="r5-area">—</strong></div>
+        <div class="kpi"><span>Caixas</span><strong id="r5-caixas">—</strong></div>
+        <div class="kpi total"><span>Valor</span><strong id="r5-valor">—</strong></div>
+      </div>
+    </div>
+
+    <div class="result-block">
+      <h3>Com folga de 10%</h3>
+      <div class="grid grid-3">
+        <div class="kpi"><span>Área + 10%</span><strong id="r10-area">—</strong></div>
+        <div class="kpi"><span>Caixas</span><strong id="r10-caixas">—</strong></div>
+        <div class="kpi total"><span>Valor</span><strong id="r10-valor">—</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <button id="limpar">Limpar tudo</button>
+  </footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
