@@ -3,6 +3,7 @@
 Calculadora web para estimar **área de ambiente**, **quantidade de caixas de porcelanato** e **custo total** da obra — tudo reativo, sem botões de calcular.
 
 🔗 **Repositório:** [rafadsm/calculadora-piso](https://github.com/rafadsm/calculadora-piso)
+🌐 **Demo:** [calculadora-piso-ecru.vercel.app](https://calculadora-piso-ecru.vercel.app/)
 
 ---
 
