@@ -59,6 +59,7 @@ header .sub {
   gap: 12px;
   margin-bottom: 10px;
 }
+.grid-1 { grid-template-columns: 1fr; }
 .grid-2 { grid-template-columns: repeat(2, 1fr); }
 .grid-3 { grid-template-columns: repeat(3, 1fr); }
 

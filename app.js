@@ -10,6 +10,7 @@ const els = {
   caixaM2: $("caixa-m2"),
   caixaPecas: $("caixa-pecas"),
   caixaPreco: $("caixa-preco"),
+  precoM2: $("preco-m2"),
   rPrecoM2: $("r-preco-m2"),
   rPrecoPeca: $("r-preco-peca"),
   rCaixas: $("r-caixas"),
@@ -95,9 +96,22 @@ let lastCaixaEdited = null;
   els[k].addEventListener("input", () => {
     lastCaixaEdited = k;
     recalcCaixa();
+    syncPrecoFromCaixaM2();
     recalcAll();
   });
 });
+
+function syncPrecoFromCaixaM2() {
+  const cxM2 = num(els.caixaM2);
+  const cxPreco = num(els.caixaPreco);
+  const pM2 = num(els.precoM2);
+  if (cxM2 <= 0) return;
+  if (lastPrecoEdited === "precoM2" && pM2 > 0) {
+    setVal(els.caixaPreco, pM2 * cxM2);
+  } else if (cxPreco > 0) {
+    setVal(els.precoM2, cxPreco / cxM2);
+  }
+}
 
 function recalcCaixa() {
   const pecaM2 = num(els.pecaM2);
@@ -117,7 +131,29 @@ function recalcCaixa() {
   }
 }
 
-els.caixaPreco.addEventListener("input", recalcAll);
+let lastPrecoEdited = null;
+["caixaPreco", "precoM2"].forEach((k) => {
+  els[k].addEventListener("focus", () => (lastPrecoEdited = k));
+  els[k].addEventListener("input", () => {
+    lastPrecoEdited = k;
+    recalcPreco();
+    recalcAll();
+  });
+});
+
+function recalcPreco() {
+  const cxM2 = num(els.caixaM2);
+  const cxPreco = num(els.caixaPreco);
+  const pM2 = num(els.precoM2);
+
+  if (cxM2 <= 0) return;
+
+  if (lastPrecoEdited === "caixaPreco" && cxPreco > 0) {
+    setVal(els.precoM2, cxPreco / cxM2);
+  } else if (lastPrecoEdited === "precoM2" && pM2 > 0) {
+    setVal(els.caixaPreco, pM2 * cxM2);
+  }
+}
 
 function recalcAll() {
   const areaM2 = num(els.areaM2);
